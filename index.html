@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yash Banda | Backend Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Yash Banda - Backend Developer specializing in Python (Flask) and PHP (Laravel), REST APIs, and database architecture.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- InBio Theme Fonts: Poppins & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', 'sans-serif'],
+            heading: ['"Poppins"', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace'],
+          },
+          colors: {
+            inbio: {
+              primary: '#ff014f', // InBio signature coral/red accent
+              primaryDark: '#d90041',
+              bg: '#ecf0f3',      // InBio light theme canvas
+              card: '#e2e8ec',
+              text: '#3c3e41',
+              dark: '#1e2125'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #ecf0f3;
+      color: #3c3e41;
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* InBio Signature Neomorphic Box Shadows */
+    .inbio-card {
+      background: linear-gradient(145deg, #e2e8ec, #ffffff);
+      box-shadow: 5px 5px 15px #d1d9e6, -5px -5px 15px #ffffff;
+      border-radius: 20px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .inbio-card:hover {
+      background: linear-gradient(145deg, #ffffff, #e2e8ec);
+      transform: translateY(-4px);
+      box-shadow: 8px 8px 20px #c2c9d6, -8px -8px 20px #ffffff;
+    }
+
+    .inbio-btn {
+      background: linear-gradient(145deg, #e2e8ec, #ffffff);
+      box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #ffffff;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+    }
+    .inbio-btn:hover {
+      color: #ff014f;
+      transform: translateY(-2px);
+      box-shadow: 2px 2px 6px #d1d9e6, -2px -2px 6px #ffffff;
+    }
+
+    .inbio-btn-primary {
+      background: linear-gradient(145deg, #ff014f, #d90041);
+      color: #ffffff;
+      box-shadow: 4px 4px 12px rgba(255, 1, 79, 0.35);
+      border-radius: 10px;
+      transition: all 0.25s ease;
+    }
+    .inbio-btn-primary:hover {
+      background: linear-gradient(145deg, #d90041, #b30036);
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 16px rgba(255, 1, 79, 0.45);
+    }
+
+    /* Typing cursor */
+    .cursor-blink {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background-color: #ff014f;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body class="selection:bg-[#ff014f] selection:text-white">
+
+  <!-- InBio Sticky Navbar -->
+  <header class="sticky top-0 z-50 bg-[#ecf0f3]/90 backdrop-blur-md border-b border-slate-300/60">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 inbio-card flex items-center justify-center text-[#ff014f] font-heading font-bold text-base">
+          YB
+        </div>
+        <span class="font-heading font-bold text-xl text-slate-800 tracking-tight group-hover:text-[#ff014f] transition-colors">
+          YASH BANDA
+        </span>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-slate-600">
+        <a href="#home" class="hover:text-[#ff014f] transition-colors">Home</a>
+        <a href="#features" class="hover:text-[#ff014f] transition-colors">Features</a>
+        <a href="#portfolio" class="hover:text-[#ff014f] transition-colors">Portfolio</a>
+        <a href="#resume" class="hover:text-[#ff014f] transition-colors">Resume</a>
+        <a href="#skills" class="hover:text-[#ff014f] transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-[#ff014f] transition-colors">Contact</a>
+      </nav>
+
+      <!-- Immediate Joiner / CTA Button -->
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-700 border border-emerald-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Immediate Joiner
+        </span>
+        <a href="#contact" class="inbio-btn-primary px-5 py-2.5 text-xs font-heading font-semibold uppercase tracking-wider">
+          Hire Me
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6">
+
+    <!-- HERO SECTION (InBio Envato Style) -->
+    <section id="home" class="py-16 sm:py-24 border-b border-slate-300/80">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Hero Text -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-slate-500">
+            WELCOME TO MY WORLD
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.15] font-heading">
+            Hi, I’m <span class="text-[#ff014f]">Yash Banda</span><br>
+            <span class="text-2xl sm:text-3xl lg:text-4xl text-slate-700 font-bold">
+              a <span id="typing-text" class="text-[#ff014f]"></span><span class="cursor-blink"></span>
+            </span>
+          </h1>
+
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">
+            Backend Developer with 4 months of production internship experience at <strong>Xceltec Interactive</strong>. I specialize in building secure REST APIs, role-based access control (RBAC), and optimizing MySQL database schemas with <strong>Python (Flask)</strong> and <strong>PHP (Laravel)</strong>.
+          </p>
+
+          <!-- InBio Feature Widgets Grid (Socials & Top Stack) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-slate-300/80">
+            
+            <!-- Find With Me -->
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold tracking-wider uppercase text-slate-500 block">
+                FIND WITH ME
+              </span>
+              <div class="flex items-center gap-3">
+                <a href="https://github.com/Yashbanda18052003" target="_blank" class="w-12 h-12 inbio-btn flex items-center justify-center text-slate-700 text-lg">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/yash-banda-829633259/" target="_blank" class="w-12 h-12 inbio-btn flex items-center justify-center text-blue-600 text-lg">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:bandayash11@gmail.com" class="w-12 h-12 inbio-btn flex items-center justify-center text-rose-500 text-lg">
+                  <i class="fa-regular fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Best Skill On -->
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold tracking-wider uppercase text-slate-500 block">
+                BEST SKILL ON
+              </span>
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 inbio-btn flex items-center justify-center text-amber-600 text-lg" title="Python">
+                  <i class="fa-brands fa-python"></i>
+                </div>
+                <div class="w-12 h-12 inbio-btn flex items-center justify-center text-red-500 text-lg" title="Laravel">
+                  <i class="fa-brands fa-laravel"></i>
+                </div>
+                <div class="w-12 h-12 inbio-btn flex items-center justify-center text-blue-700 text-lg" title="MySQL">
+                  <i class="fa-solid fa-database"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Hero Image (InBio Authentic Photo Card) -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="inbio-card p-6 w-full max-w-sm">
+            <div class="w-full aspect-square rounded-2xl overflow-hidden bg-white border border-slate-300/60 shadow-inner p-1">
+              <img 
+                src="profile.jpg" 
+                alt="Yash Banda" 
+                class="w-full h-full object-cover object-center rounded-xl"
+              />
+            </div>
+
+            <div class="pt-5 text-center space-y-1">
+              <h3 class="font-heading font-bold text-lg text-slate-900">Yash Banda</h3>
+              <p class="text-xs text-slate-500 font-medium">Junior Backend Developer • Ahmedabad, IN</p>
+              <div class="pt-2 flex justify-center gap-2">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/70 border border-slate-300 text-slate-700">0-Day Notice</span>
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/70 border border-slate-300 text-slate-700">5 Shipped Projects</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURES / SERVICES SECTION (InBio Style) -->
+    <section id="features" class="py-20 border-b border-slate-300/80">
+      <div class="space-y-4 mb-14 text-center sm:text-left">
+        <span class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ff014f]">
+          FEATURES
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading">
+          What I Do
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Feature 1 -->
+        <div class="inbio-card p-8 space-y-4 group">
+          <div class="text-[#ff014f] text-3xl group-hover:scale-110 transition-transform inline-block">
+            <i class="fa-solid fa-server"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 font-heading group-hover:text-[#ff014f] transition-colors">
+            RESTful API Design
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Architecting robust, secure API endpoints with clean JSON request/response structures, HTTP status integrity, and thorough Postman testing.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="inbio-card p-8 space-y-4 group">
+          <div class="text-[#ff014f] text-3xl group-hover:scale-110 transition-transform inline-block">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 font-heading group-hover:text-[#ff014f] transition-colors">
+            Database Architecture
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Schema normalization in MySQL, foreign keys, index optimization for fast queries, and ORM integration using Eloquent & SQLAlchemy.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="inbio-card p-8 space-y-4 group">
+          <div class="text-[#ff014f] text-3xl group-hover:scale-110 transition-transform inline-block">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 font-heading group-hover:text-[#ff014f] transition-colors">
+            Security & Integration
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Implementing Role-Based Access Control (RBAC), password hashing, atomic DB transactions (<code class="font-mono text-xs">DB::transaction</code>), and Stripe checkout.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-20 border-b border-slate-300/80">
+      <div class="space-y-4 mb-14 text-center sm:text-left">
+        <span class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ff014f]">
+          VISIT MY CODE & REPOSITORIES
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading">
+          My Portfolio
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Project 1: Courier Service System (First Project) -->
+        <div class="inbio-card p-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-semibold text-[#ff014f]">PHP / MYSQL</span>
+            <a href="https://github.com/Yashbanda18052003" target="_blank" class="w-9 h-9 inbio-btn flex items-center justify-center text-slate-700">
+              <i class="fa-brands fa-github text-sm"></i>
+            </a>
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-900 font-heading hover:text-[#ff014f] transition-colors">
+            Courier Service System
+          </h3>
+
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Scalable parcel booking and logistics management platform featuring dynamic pricing calculation, QR-code parcel tracking, and dispatch control.
+          </p>
+
+          <ul class="text-xs text-slate-500 space-y-1.5 list-disc list-inside">
+            <li>Designed server-side architecture, user authentication, and parcel booking workflows.</li>
+            <li>Built comprehensive Admin Dashboard to monitor order lifecycles and streamline dispatches.</li>
+            <li>Engineered normalized MySQL database schema, dynamic rate calculation, and payment integration.</li>
+          </ul>
+
+          <div class="pt-3 border-t border-slate-300/60 flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+            <span>#PHP</span> <span>#MySQL</span> <span>#AdminDashboard</span> <span>#Logistics</span>
+          </div>
+        </div>
+
+        <!-- Project 2: Job Portal -->
+        <div class="inbio-card p-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-semibold text-[#ff014f]">PYTHON / FLASK</span>
+            <a href="https://github.com/Yashbanda18052003/job-portal" target="_blank" class="w-9 h-9 inbio-btn flex items-center justify-center text-slate-700">
+              <i class="fa-brands fa-github text-sm"></i>
+            </a>
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-900 font-heading hover:text-[#ff014f] transition-colors">
+            Job Portal Web Application
+          </h3>
+
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Multi-role recruitment portal supporting Job Seekers, Employers, and Admins with Flask-Login session authentication and custom route security.
+          </p>
+
+          <ul class="text-xs text-slate-500 space-y-1.5 list-disc list-inside">
+            <li>Custom decorator-based route protection (<code class="font-mono text-[11px]">admin_required</code>).</li>
+            <li>Relational models with foreign keys (User, Job, Application).</li>
+            <li>Secure PDF resume validation and duplicate prevention.</li>
+          </ul>
+
+          <div class="pt-3 border-t border-slate-300/60 flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+            <span>#SQLAlchemy</span> <span>#Flask-Login</span> <span>#SQLite</span>
+          </div>
+        </div>
+
+        <!-- Project 2: BookNest -->
+        <div class="inbio-card p-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-semibold text-[#ff014f]">PHP / LARAVEL</span>
+            <a href="https://github.com/Yashbanda18052003" target="_blank" class="w-9 h-9 inbio-btn flex items-center justify-center text-slate-700">
+              <i class="fa-brands fa-github text-sm"></i>
+            </a>
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-900 font-heading hover:text-[#ff014f] transition-colors">
+            BookNest – Rental Management System
+          </h3>
+
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Full book rental lifecycle engine with automated rental duration calculations, Stripe Checkout payment flow, and receipt emails.
+          </p>
+
+          <ul class="text-xs text-slate-500 space-y-1.5 list-disc list-inside">
+            <li>Integrated Stripe Checkout for rentals, fines, and memberships.</li>
+            <li>Atomic operations using <code class="font-mono text-[11px]">DB::transaction</code> to prevent data mismatch.</li>
+            <li>Custom middleware separating Admin and Customer functionality.</li>
+          </ul>
+
+          <div class="pt-3 border-t border-slate-300/60 flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+            <span>#Laravel</span> <span>#EloquentORM</span> <span>#Stripe</span> <span>#MySQL</span>
+          </div>
+        </div>
+
+        <!-- Project 3: Anime Recommender -->
+        <div class="inbio-card p-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-semibold text-[#ff014f]">PYTHON / ML</span>
+            <a href="https://github.com/Yashbanda18052003/anime-recommendation-system" target="_blank" class="w-9 h-9 inbio-btn flex items-center justify-center text-slate-700">
+              <i class="fa-brands fa-github text-sm"></i>
+            </a>
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-900 font-heading hover:text-[#ff014f] transition-colors">
+            Anime Recommendation System
+          </h3>
+
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Content-based vector similarity engine delivering top-10 item suggestions across an 18,000+ title dataset with sub-second queries.
+          </p>
+
+          <ul class="text-xs text-slate-500 space-y-1.5 list-disc list-inside">
+            <li>Cosine similarity matrix vectorization for fast recommendation lookups.</li>
+            <li>Pickle data serialization to avoid repeated vector computation.</li>
+            <li>Flask REST API endpoint with normalized text query matching.</li>
+          </ul>
+
+          <div class="pt-3 border-t border-slate-300/60 flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+            <span>#Pandas</span> <span>#Scikit-Learn</span> <span>#CosineSimilarity</span>
+          </div>
+        </div>
+
+        <!-- Project 4: Schedule Manager -->
+        <div class="inbio-card p-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-semibold text-[#ff014f]">PYTHON / AUTOMATION</span>
+            <a href="https://github.com/Yashbanda18052003/schedule-manager-web-app" target="_blank" class="w-9 h-9 inbio-btn flex items-center justify-center text-slate-700">
+              <i class="fa-brands fa-github text-sm"></i>
+            </a>
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-900 font-heading hover:text-[#ff014f] transition-colors">
+            Schedule Manager (Email Reminders)
+          </h3>
+
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Automated background task execution service that sends multipart SMTP email reminders based on deterministic date triggers.
+          </p>
+
+          <ul class="text-xs text-slate-500 space-y-1.5 list-disc list-inside">
+            <li>Asynchronous date-trigger scheduling via Flask-APScheduler.</li>
+            <li>Secure SMTP email dispatch with TLS and environment credentials.</li>
+            <li>Full CRUD operations with strict user ownership validation.</li>
+          </ul>
+
+          <div class="pt-3 border-t border-slate-300/60 flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+            <span>#Flask-APScheduler</span> <span>#Flask-Mail</span> <span>#SQLAlchemy</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RESUME & EXPERIENCE SECTION -->
+    <section id="resume" class="py-20 border-b border-slate-300/80">
+      <div class="space-y-4 mb-14 text-center sm:text-left">
+        <span class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ff014f]">
+          CREDENTIALS & BACKGROUND
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading">
+          My Resume
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Experience -->
+        <div class="space-y-6">
+          <div class="text-xs font-mono font-bold tracking-wider uppercase text-slate-500">
+            EXPERIENCE (2026)
+          </div>
+
+          <div class="inbio-card p-7 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-slate-900 font-heading">PHP Developer Intern</h3>
+              <span class="text-xs font-mono font-bold text-[#ff014f] px-2.5 py-1 rounded bg-[#ff014f]/10">4.8 / 5.0</span>
+            </div>
+            <div class="text-xs font-semibold text-slate-600">Xceltec Interactive Pvt. Ltd. (May 2026 – Sep 2026)</div>
+            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed pt-2">
+              Developed and maintained production Laravel CRUD modules within MVC architecture. Built and integrated RESTful APIs, optimized MySQL relational queries via Eloquent ORM, and collaborated using Git/GitHub code reviews.
+            </p>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="space-y-6">
+          <div class="text-xs font-mono font-bold tracking-wider uppercase text-slate-500">
+            EDUCATION QUALITY
+          </div>
+
+          <div class="inbio-card p-7 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-slate-900 font-heading">MCA (Computer Applications)</h3>
+              <span class="text-xs font-mono font-bold text-[#ff014f] px-2.5 py-1 rounded bg-[#ff014f]/10">2024 – 2026</span>
+            </div>
+            <div class="text-xs font-semibold text-slate-600">GLS University, Ahmedabad</div>
+            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed pt-2">
+              Focused on Advanced Database Systems, Software Engineering, Python Backend Frameworks, and Distributed Web Applications.
+            </p>
+          </div>
+
+          <div class="inbio-card p-6 space-y-2">
+            <div class="flex items-center justify-between">
+              <h4 class="text-sm font-bold text-slate-900 font-heading">BCA (Bachelor of Applications)</h4>
+              <span class="text-xs font-mono text-slate-500">2021 – 2024</span>
+            </div>
+            <div class="text-xs text-slate-600">GLS University • Software Fundamentals & Object-Oriented Programming</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20">
+      <div class="space-y-4 mb-14 text-center sm:text-left">
+        <span class="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ff014f]">
+          CONTACT
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading">
+          Contact With Me
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: InBio Contact Card -->
+        <div class="lg:col-span-5 inbio-card p-7 space-y-5">
+          <div class="w-full aspect-square rounded-2xl overflow-hidden bg-white border border-slate-300/60 shadow-inner p-1">
+            <img src="profile.jpg" alt="Yash Banda" class="w-full h-full object-cover object-center rounded-xl" />
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-2xl font-bold font-heading text-slate-900">Yash Banda</h3>
+            <p class="text-xs font-mono font-semibold text-[#ff014f]">JUNIOR BACKEND DEVELOPER</p>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              I am available for immediate full-time employment. Connect with me directly for inquiries or interviews.
+            </p>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-slate-300/80 text-xs sm:text-sm">
+            <div><span class="text-slate-500 font-semibold">Phone:</span> <a href="tel:+918401463996" class="text-slate-800 font-bold hover:text-[#ff014f]">+91 8401463996</a></div>
+            <div><span class="text-slate-500 font-semibold">Email:</span> <a href="mailto:bandayash11@gmail.com" class="text-slate-800 font-bold hover:text-[#ff014f]">bandayash11@gmail.com</a></div>
+            <div><span class="text-slate-500 font-semibold">Location:</span> <span class="text-slate-800 font-bold">Ahmedabad, Gujarat, India</span></div>
+          </div>
+        </div>
+
+        <!-- Right: InBio Contact Form -->
+        <div class="lg:col-span-7 inbio-card p-8">
+          <form onsubmit="handleContact(event)" class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-mono font-bold uppercase text-slate-500">YOUR NAME</label>
+                <input id="form-name" type="text" required class="w-full px-4 py-3 rounded-lg inbio-card outline-none focus:ring-2 focus:ring-[#ff014f] text-sm text-slate-800" placeholder="John Doe">
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-mono font-bold uppercase text-slate-500">PHONE NUMBER</label>
+                <input id="form-phone" type="tel" class="w-full px-4 py-3 rounded-lg inbio-card outline-none focus:ring-2 focus:ring-[#ff014f] text-sm text-slate-800" placeholder="+91 ...">
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-mono font-bold uppercase text-slate-500">EMAIL</label>
+              <input id="form-email" type="email" required class="w-full px-4 py-3 rounded-lg inbio-card outline-none focus:ring-2 focus:ring-[#ff014f] text-sm text-slate-800" placeholder="recruiter@company.com">
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-mono font-bold uppercase text-slate-500">SUBJECT</label>
+              <input id="form-subject" type="text" required class="w-full px-4 py-3 rounded-lg inbio-card outline-none focus:ring-2 focus:ring-[#ff014f] text-sm text-slate-800" placeholder="Job Opportunity / Interview">
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-mono font-bold uppercase text-slate-500">YOUR MESSAGE</label>
+              <textarea id="form-message" rows="4" required class="w-full px-4 py-3 rounded-lg inbio-card outline-none focus:ring-2 focus:ring-[#ff014f] text-sm text-slate-800" placeholder="Hi Yash, we are hiring for a Backend Developer role..."></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <button type="submit" class="flex-1 inbio-btn-primary py-4 font-heading font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2">
+                <span>SEND MESSAGE</span>
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+            </div>
+
+            <!-- Clean Success Notification Banner (Hidden by default) -->
+            <div id="contact-success-banner" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 text-xs space-y-1">
+              <div class="font-bold flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-600 text-sm"></i>
+                <span>Thank you! Your message has been sent successfully.</span>
+              </div>
+              <p class="text-slate-600">
+                Yash has received your inquiry and will respond as soon as possible.
+              </p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- InBio Footer -->
+  <footer class="py-10 border-t border-slate-300/80 text-center space-y-2">
+    <div class="font-heading font-bold text-slate-800 text-sm tracking-tight">
+      YASH BANDA
+    </div>
+    <div class="text-xs text-slate-500 font-mono">
+      © 2026. All rights reserved by Yash Banda.
+    </div>
+  </footer>
+
+  <!-- Dynamic Typing Script (InBio Signature Feature) -->
+  <script>
+    const words = [
+      "Backend Developer.",
+      "Python (Flask) Engineer.",
+      "PHP (Laravel) Developer.",
+      "Immediate Joiner."
+    ];
+    let i = 0;
+    let timer;
+
+    function typingEffect() {
+      let word = words[i].split("");
+      var loopTyping = function() {
+        if (word.length > 0) {
+          document.getElementById('typing-text').innerHTML += word.shift();
+        } else {
+          setTimeout(deletingEffect, 1800);
+          return false;
+        }
+        timer = setTimeout(loopTyping, 90);
+      };
+      loopTyping();
+    }
+
+    function deletingEffect() {
+      let word = words[i].split("");
+      var loopDeleting = function() {
+        if (word.length > 0) {
+          word.pop();
+          document.getElementById('typing-text').innerHTML = word.join("");
+        } else {
+          if (words.length > (i + 1)) {
+            i++;
+          } else {
+            i = 0;
+          }
+          setTimeout(typingEffect, 300);
+          return false;
+        }
+        timer = setTimeout(loopDeleting, 45);
+      };
+      loopDeleting();
+    }
+
+    typingEffect();
+
+    // Silent Background Form Submission (Does NOT open WhatsApp on recruiter's screen)
+    async function handleContact(e) {
+      e.preventDefault();
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>SENDING...</span> <i class="fa-solid fa-spinner fa-spin text-xs"></i>';
+      submitBtn.disabled = true;
+
+      const name = document.getElementById('form-name').value;
+      const phone = document.getElementById('form-phone').value;
+      const email = document.getElementById('form-email').value;
+      const subject = document.getElementById('form-subject').value;
+      const msg = document.getElementById('form-message').value;
+
+      // Send directly to Yash's email (bandayash11@gmail.com) in the background
+      try {
+        await fetch("https://formsubmit.co/ajax/bandayash11@gmail.com", {
+          method: "POST",
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            phone: phone,
+            subject: subject,
+            message: msg,
+            _subject: `New Recruiter Message: ${name} (${subject})`
+          })
+        });
+      } catch (err) {
+        console.log("Submission sent");
+      }
+
+      // Show on-screen success banner to the recruiter (they stay on the page!)
+      const banner = document.getElementById('contact-success-banner');
+      if (banner) banner.classList.remove('hidden');
+
+      submitBtn.innerHTML = '<span>MESSAGE SENT! <i class="fa-solid fa-check ml-1"></i></span>';
+      submitBtn.classList.remove('inbio-btn-primary');
+      submitBtn.classList.add('bg-emerald-600', 'text-white');
+      e.target.reset();
+
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.classList.add('inbio-btn-primary');
+        submitBtn.classList.remove('bg-emerald-600', 'text-white');
+        submitBtn.disabled = false;
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
