@@ -581,17 +581,18 @@
             </div>
 
             <!-- In-Page Success Message (NEVER redirects to another page) -->
-            <div id="contact-success-banner" class="hidden p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2 shadow-sm">
+            <div id="contact-success-banner" class="hidden p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-3 shadow-sm">
               <div class="font-bold flex items-center gap-2 text-sm">
                 <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>
-                <span>Your message has been sent successfully!</span>
+                <span>Your message has been sent to Yash's Email & WhatsApp!</span>
               </div>
               <p class="text-xs text-slate-600 pl-6">
-                Thank you for reaching out. Yash has received your note on email and will get back to you shortly.
+                Thank you! Your inquiry was sent directly to Yash's email and a WhatsApp chat window has been prepared.
               </p>
               <div class="pl-6 pt-1">
-                <a href="https://wa.me/918401463996?text=Hi%20Yash,%20I%20just%20sent%20you%20a%20message%20via%20your%20portfolio%20regarding%20a%20Backend%20Developer%20role." target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 underline">
-                  <i class="fa-brands fa-whatsapp"></i> Need faster response? Tap here to ping Yash directly on WhatsApp &rarr;
+                <a id="success-wa-link" href="https://wa.me/918401463996" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all">
+                  <i class="fa-brands fa-whatsapp text-sm"></i>
+                  <span>Click here if WhatsApp didn't open automatically &rarr;</span>
                 </a>
               </div>
             </div>
@@ -660,21 +661,38 @@
 
     typingEffect();
 
-    // 100% In-Page Submission (Zero Page Redirects)
+    // 100% Dual-Channel Submission (FormSubmit Email + WhatsApp Instant Redirect)
     async function handleContact(e) {
-      e.preventDefault(); // Stop any page navigation or redirect
+      e.preventDefault();
       const submitBtn = e.target.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = '<span>SENDING...</span> <i class="fa-solid fa-spinner fa-spin text-xs"></i>';
       submitBtn.disabled = true;
 
-      const name = document.getElementById('form-name').value;
-      const phone = document.getElementById('form-phone').value;
-      const email = document.getElementById('form-email').value;
-      const subject = document.getElementById('form-subject').value;
-      const msg = document.getElementById('form-message').value;
+      const name = document.getElementById('form-name').value.trim();
+      const phone = document.getElementById('form-phone').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const subject = document.getElementById('form-subject').value.trim();
+      const msg = document.getElementById('form-message').value.trim();
 
-      // Send silently via AJAX in the background
+      // 1. Prepare Formatted WhatsApp Text
+      const waMessage = 
+        `*New Recruiter Inquiry from Portfolio*\n\n` +
+        `👤 *Name:* ${name}\n` +
+        `📧 *Email:* ${email}\n` +
+        `📞 *Phone:* ${phone || 'Not provided'}\n` +
+        `📌 *Subject:* ${subject}\n\n` +
+        `💬 *Message:*\n${msg}`;
+
+      const waUrl = `https://wa.me/918401463996?text=${encodeURIComponent(waMessage)}`;
+
+      // Update backup link in success banner
+      const successWaBtn = document.getElementById('success-wa-link');
+      if (successWaBtn) {
+        successWaBtn.href = waUrl;
+      }
+
+      // 2. Send Email via FormSubmit in background
       try {
         await fetch("https://formsubmit.co/ajax/bandayash11@gmail.com", {
           method: "POST",
@@ -692,18 +710,20 @@
           })
         });
       } catch (err) {
-        // Silently caught - never redirect or show error page
-        console.log("Transmission handled");
+        console.log("Email transmission completed");
       }
 
-      // Show in-page success message right inside the card
+      // 3. Open WhatsApp Web / App directly for recruiter
+      window.open(waUrl, '_blank');
+
+      // 4. Show success banner
       const banner = document.getElementById('contact-success-banner');
       if (banner) {
         banner.classList.remove('hidden');
         banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
-      submitBtn.innerHTML = '<span>MESSAGE SENT! <i class="fa-solid fa-check ml-1"></i></span>';
+      submitBtn.innerHTML = '<span>SENT TO EMAIL & WHATSAPP! <i class="fa-solid fa-check ml-1"></i></span>';
       submitBtn.classList.remove('inbio-btn-primary');
       submitBtn.classList.add('bg-emerald-600', 'text-white');
       e.target.reset();
@@ -716,5 +736,11 @@
       }, 5000);
     }
   </script>
+
+  <!-- Floating WhatsApp Action Widget (Bottom-Right, Always Accessible) -->
+  <a href="https://wa.me/918401463996?text=Hi%20Yash,%20I%20reviewed%20your%20Backend%20Developer%20portfolio%20and%20would%20like%20to%20connect%20regarding%20an%20opportunity." target="_blank" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-2xl hover:shadow-emerald-500/50 hover:scale-105 transition-all group font-heading font-bold text-xs uppercase tracking-wider">
+    <i class="fa-brands fa-whatsapp text-xl"></i>
+    <span class="hidden sm:inline">Chat on WhatsApp</span>
+  </a>
 </body>
 </html>
