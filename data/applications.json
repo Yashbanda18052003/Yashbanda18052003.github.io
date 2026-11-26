@@ -721,22 +721,6 @@
   },
   {
     "id": 46,
-    "company": "Sapphire Software Solutions",
-    "role": "Backend Developer Intern",
-    "tech": "PHP / Python Backend",
-    "city": "Ahmedabad",
-    "location_zone": "Makarba / SG Highway",
-    "channel": "Direct Application",
-    "contact": "careers@sapphiresolutions.net",
-    "link": "https://www.sapphiresolutions.net/",
-    "date": "25-Nov-2026",
-    "day": "Day 3 (25 Nov)",
-    "status": "Under Active Review",
-    "badge_type": "review",
-    "notes": "Official response received from info.sapphsoftsol@gmail.com; candidate profile being evaluated."
-  },
-  {
-    "id": 47,
     "company": "Incubyte",
     "role": "Software Craftsperson Intern",
     "tech": "Backend Software Craft",
@@ -752,7 +736,7 @@
     "notes": "Answered: 2026 Batch, MCA: 6.18 CGPA, BCA: 5.84 CGPA, Immediate joining."
   },
   {
-    "id": 48,
+    "id": 47,
     "company": "CNV AI Labs Inc",
     "role": "Junior PHP / Laravel Developer (Education ERP)",
     "tech": "PHP / Laravel",
@@ -768,7 +752,7 @@
     "notes": "Answered: Immediate joining, 4-month Laravel internship at Xceltec Interactive."
   },
   {
-    "id": 49,
+    "id": 48,
     "company": "SDS Softwares",
     "role": "Junior Laravel (PHP) Developer",
     "tech": "PHP / Laravel",
@@ -784,7 +768,7 @@
     "notes": "Answered: Immediate joining, \u20b918k/mo salary expectations, high-speed internet & laptop."
   },
   {
-    "id": 50,
+    "id": 49,
     "company": "Mako IT Lab Private Limited",
     "role": "Full-stack Engineer (Python/Flask)",
     "tech": "Python / Flask",
@@ -800,7 +784,7 @@
     "notes": "Answered: Ready to relocate immediately, zero notice period (immediate joining)."
   },
   {
-    "id": 51,
+    "id": 50,
     "company": "Insurance Advisory & Distribution",
     "role": "Backend Engineer (Django)",
     "tech": "Python / Django",
@@ -816,7 +800,87 @@
     "notes": "Completed questionnaire + personalized direct pitch sent on Cutshort thread."
   },
   {
+    "id": 51,
+    "company": "Parsewave",
+    "role": "Remote Python Developer",
+    "tech": "Python / Backend",
+    "city": "Remote / Bangalore",
+    "location_zone": "Remote / Delhi / Bangalore",
+    "channel": "Wellfound",
+    "contact": "Parsewave Talent Team",
+    "link": "https://wellfound.com/jobs",
+    "date": "24-Nov-2026",
+    "day": "Day 2 (24 Nov)",
+    "status": "Application Submitted",
+    "badge_type": "wellfound",
+    "notes": "Applied for Full Time Remote Python Developer ($40K-$60K) via Wellfound."
+  },
+  {
     "id": 52,
+    "company": "Apna Mart",
+    "role": "SDE Intern \u2013 Backend",
+    "tech": "Backend / Systems",
+    "city": "Gurugram",
+    "location_zone": "NCR / Gurugram",
+    "channel": "Wellfound",
+    "contact": "Apna Mart Hiring Team",
+    "link": "https://wellfound.com/jobs",
+    "date": "24-Nov-2026",
+    "day": "Day 2 (24 Nov)",
+    "status": "Application Submitted",
+    "badge_type": "wellfound",
+    "notes": "Applied for SDE Intern \u2013 Backend (Gurgaon) via Wellfound."
+  },
+  {
+    "id": 53,
+    "company": "WhatBytes",
+    "role": "Backend Developer Intern",
+    "tech": "Backend APIs",
+    "city": "Bangalore / Remote",
+    "location_zone": "Bangalore Urban / Remote",
+    "channel": "Wellfound",
+    "contact": "WhatBytes Talent Team",
+    "link": "https://wellfound.com/jobs",
+    "date": "24-Nov-2026",
+    "day": "Day 2 (24 Nov)",
+    "status": "Application Submitted",
+    "badge_type": "wellfound",
+    "notes": "Applied for Backend Developer Intern (\u20b910K-\u20b915K/mo stipend) via Wellfound."
+  },
+  {
+    "id": 54,
+    "company": "Ditto Insurance",
+    "role": "Backend Developer",
+    "tech": "Backend Architecture",
+    "city": "Bangalore",
+    "location_zone": "Bengaluru",
+    "channel": "Wellfound",
+    "contact": "Ditto People Team",
+    "link": "https://wellfound.com/jobs",
+    "date": "24-Nov-2026",
+    "day": "Day 2 (24 Nov)",
+    "status": "Application Submitted",
+    "badge_type": "wellfound",
+    "notes": "Applied for Backend Developer role at Ditto Insurance via Wellfound."
+  },
+  {
+    "id": 55,
+    "company": "Sapphire Software Solutions",
+    "role": "Backend Developer Intern",
+    "tech": "PHP / Python Backend",
+    "city": "Ahmedabad",
+    "location_zone": "Makarba / SG Highway",
+    "channel": "Direct Application",
+    "contact": "careers@sapphiresolutions.net",
+    "link": "https://www.sapphiresolutions.net/",
+    "date": "25-Nov-2026",
+    "day": "Day 3 (25 Nov)",
+    "status": "Under Active Review",
+    "badge_type": "review",
+    "notes": "Official response received from info.sapphsoftsol@gmail.com; candidate profile being evaluated."
+  },
+  {
+    "id": 56,
     "company": "Birbal",
     "role": "Software Engineer Intern",
     "tech": "Backend / Software Engineering",
